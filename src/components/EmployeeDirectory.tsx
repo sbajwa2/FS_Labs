@@ -1,16 +1,16 @@
-import { departments } from "../data/departments";
+import type { Department } from "../types/Employee";
 
-function EmployeeDirectory() {
+function EmployeeDirectory({ departments }: { departments: Department[] }) {
   return (
-    <main id="employee-container">
-      {departments.map((department) => (
-        <section key={department.name}>
-          <h2>{department.name}</h2>
+    <main>
+      {departments.map((dept) => (
+        <section key={dept.name}>
+          <h2>{dept.name}</h2>
 
           <ul>
-            {department.employees.map((employee) => (
-              <li key={`${employee.firstName}-${employee.lastName}`}>
-                {employee.firstName} {employee.lastName}
+            {dept.employees.map((emp, index) => (
+              <li key={index}>
+                {emp.firstName} {emp.lastName}
               </li>
             ))}
           </ul>
