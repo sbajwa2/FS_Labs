@@ -8,9 +8,11 @@ function AddEmployeeForm({
   departments: Department[];
   setDepartments: React.Dispatch<React.SetStateAction<Department[]>>;
 }) {
+  // State for form inputs
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [selectedDept, setSelectedDept] = useState(departments[0].name);
+  // State for validation message
   const [error, setError] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -18,13 +20,13 @@ function AddEmployeeForm({
 
     setError("");
 
-    // ✅ Validation
+ // Validate first name length
     if (firstName.trim().length < 3) {
       setError("First name must be at least 3 characters.");
       return;
     }
 
-    // ✅ Add employee
+  // Add new employee to selected department
     const updated = departments.map((dept) => {
       if (dept.name === selectedDept) {
         return {
@@ -38,9 +40,10 @@ function AddEmployeeForm({
       return dept;
     });
 
+    // Update state so UI re-renders
     setDepartments(updated);
 
-    // clear form
+    // clear form inputs after submission
     setFirstName("");
     setLastName("");
   };
