@@ -1,11 +1,13 @@
 import { useState } from "react";
 import EmployeeDirectory from "../components/EmployeeDirectory";
 import AddEmployeeForm from "../components/AddEmployeeForm";
-import { departments as initialData } from "../data/departments";
+import { employeeService } from "../services/employeeService";
 import type { Department } from "../types/Employee";
 
 function EmployeesPage() {
-  const [departments, setDepartments] = useState<Department[]>(initialData);
+   const [departments, setDepartments] = useState<Department[]>(
+    employeeService.getDepartments()
+  );
 
   return (
     <>
