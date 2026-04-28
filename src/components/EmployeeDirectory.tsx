@@ -9,7 +9,7 @@ function EmployeeDirectory({ departments }: { departments: Department[] }) {
 
           <ul>
             {dept.employees.map((emp, index) => (
-              <li key={index}>
+              <li key={`${emp.firstName}-${emp.lastName}-${index}`}>
                 {emp.firstName} {emp.lastName}
               </li>
             ))}
