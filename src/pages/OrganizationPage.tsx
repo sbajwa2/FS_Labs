@@ -1,29 +1,16 @@
-import { roles } from "../data/roles";
+import { useState } from "react";
+import RoleList from "../components/RoleList";
+import AddRoleForm from "../components/AddroleForm";
+import { roleService } from "../services/roleService";
+import type { Role } from "../types/Role";
 
 function OrganizationPage() {
+  const [roles, setRoles] = useState<Role[]>(roleService.getRoles());
+
   return (
     <main>
-      <section>
-        <h2>Leadership and Management</h2>
-
-        {roles.map((person) => (
-          <div
-            key={`${person.firstName}-${person.lastName}`}
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              padding: "8px 0",
-              borderBottom: "1px solid #ddd",
-            }}
-          >
-            <span>
-              {person.firstName} {person.lastName}
-            </span>
-
-            <span>{person.role}</span>
-          </div>
-        ))}
-      </section>
+      <RoleList roles={roles} />
+      <AddRoleForm setRoles={setRoles} />
     </main>
   );
 }
